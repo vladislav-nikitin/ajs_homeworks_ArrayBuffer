@@ -1,6 +1,6 @@
 export default class ArrayBufferConverter {
   constructor() {
-    this.bufferView = undefined;
+    this.bufferView = null;
   }
 
   load(buffer) {
@@ -8,10 +8,9 @@ export default class ArrayBufferConverter {
   }
 
   toString() {
-    let result = "";
-    for (let i = 0; i < this.bufferView.length; i += 1) {
-      result += String.fromCharCode(this.bufferView[i]);
-    }
-    return result;
+    return [...this.bufferView].reduce(
+      (acc, prev) => acc + String.fromCharCode(prev),
+      '',
+    );
   }
 }
